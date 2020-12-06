@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div id="app">
+        <!-- 插值绑定 -->
+        <p>{{name}}</p>
+        <!-- 指令系统 -->
+        <p k-text="name"></p>
+        <p>{{age}}</p>
+        <p>{{doubleAge}}</p>
+        <!-- 双向绑定 -->
+        <input type="text" k-model="name">
+        <!-- 事件处理 -->
+        <button @click="changeName">设置</button>
+        <!-- html内容解析 -->
+        <div k-html="html"></div>
+    </div>
+    <script src='./compile.js'></script>
+    <script src='./zvue.js'></script>
+    <script>
+    new ZVue({   
+        el: '#app',
+        data: {    
+            name: "I am test.",
+                age: 17,
+                html: '<button>这是一个按钮</button>'  
+        },
+        created() {    
+            console.log('开始啦');    
+            setTimeout(() => {     
+                this.name = '我是异步事件'   
+            }, 1500)  
+        },
+        methods: {    
+            changeName() {     
+                this.name = '你好';     
+                this.age = 20;     
+                this.id = 'xx' ;    
+                console.log(1, this)   ;
+            }  
+        } 
+    })
+    </script>
+</body>
+
+</html>
